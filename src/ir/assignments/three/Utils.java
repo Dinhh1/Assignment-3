@@ -4,8 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * Created by dinhho on 1/31/15.
@@ -20,7 +19,15 @@ public class Utils {
         try {
             File file = new File(System.getProperty("user.dir") + "/" + "Subdomains.txt");
             output = new BufferedWriter(new FileWriter(file));
-            for (String subdomain : subdomains.keySet()) {
+            ArrayList<String> keySet = new ArrayList<String>(subdomains.keySet());
+            Collections.sort(keySet,  new Comparator<String>() {
+                public int compare(String s1, String s2)
+                {
+                    return s1.toString().compareTo(s2.toString());
+                }
+            });
+
+            for (String subdomain : keySet) {
                 output.write(subdomain + ", " + subdomains.get(subdomain).size() + "\n");
             }
         } catch (IOException e) {
