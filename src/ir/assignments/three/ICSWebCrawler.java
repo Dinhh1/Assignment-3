@@ -34,7 +34,7 @@ public class ICSWebCrawler extends WebCrawler {
             System.out.println("We've been to the URL: " + href); // printing that we've been here and wont visit
             success = false;
         }         // handle sub domain matching logic
-        else if (!FILTERS.matcher(href).matches() && href.startsWith("http://www.ics.uci.edu/")) {
+        else if (!FILTERS.matcher(href).matches() && href.contains("http://www.ics.uci.edu/")) {
            CrawlerController.urls.add(href);
            success = true;
         }
