@@ -63,16 +63,16 @@ public class ICSWebCrawler extends WebCrawler {
         //Add url to visited list
         CrawlerController.urls.add(url);
         //print the added url
-        System.out.println("URL: " + url);
+//        System.out.println("URL: " + url);
 
         String subdomain = url;
         int lastIndex = url.indexOf(".edu");
         subdomain = url.substring(0,lastIndex+4);
+
         if (CrawlerController.domainMap.containsKey(subdomain)) {
-            CrawlerController.domainMap.get(subdomain).add(url);
+            CrawlerController.domainMap.get(subdomain).incrementFrequency();
         } else {
-            CrawlerController.domainMap.put(subdomain, new HashSet<String>());
-            CrawlerController.domainMap.get(subdomain).add(url);
+            CrawlerController.domainMap.put(subdomain, new Frequency(subdomain,1));
         }
 
 
@@ -89,9 +89,9 @@ public class ICSWebCrawler extends WebCrawler {
             //Obtain 500 most common words
             //CrawlerController.wordList.addAll(WordFrequencyCounter.computeWordFrequencies(Utilities.tokenizeString(text)));
 
-            System.out.println("Text length: " + text.length());
-            System.out.println("Html length: " + html.length());
-            System.out.println("Number of outgoing links: " + links.size());
+//            System.out.println("Text length: " + text.length());
+//            System.out.println("Html length: " + html.length());
+//            System.out.println("Number of outgoing links: " + links.size());
         }
     }
 

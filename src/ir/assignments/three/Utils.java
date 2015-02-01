@@ -1,5 +1,7 @@
 package ir.assignments.three;
 
+import ir.assignments.two.a.Frequency;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,7 +16,7 @@ public class Utils {
     /*
     This method will create our subdomain file
      */
-    public static void writeSubdomain(HashMap<String, HashSet<String>> subdomains) {
+    public static void writeSubdomain(HashMap<String, Frequency> subdomains) {
         BufferedWriter output = null;
         try {
             File file = new File(System.getProperty("user.dir") + "/" + "Subdomains.txt");
@@ -28,7 +30,7 @@ public class Utils {
             });
 
             for (String subdomain : keySet) {
-                output.write(subdomain + ", " + subdomains.get(subdomain).size() + "\n");
+                output.write(subdomain + ", " + subdomains.get(subdomain).getFrequency() + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
