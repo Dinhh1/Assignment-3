@@ -6,6 +6,10 @@ import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+
 
 /**
  * Created by dinhho on 1/31/15.
@@ -18,7 +22,9 @@ public class CrawlerController {
     private static final int CRAWLER_DELAY = 300;
     private static final int NUMBER_OF_CRAWLERS = 100;
 
-    public static void init() throws Exception {
+    public static HashSet<String> urls = new HashSet<String>();
+
+    public static void init(String urlSeed) throws Exception {
         String crawlStorageFolder = "/data/crawl/root";
         int numberOfCrawlers = NUMBER_OF_CRAWLERS;
 
@@ -32,7 +38,7 @@ public class CrawlerController {
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
         RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
         CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
-        controller.addSeed("http://www.ics.uci.edu");
+        controller.addSeed(urlSeed);
         controller.start(ICSWebCrawler.class, numberOfCrawlers);
     }
 }

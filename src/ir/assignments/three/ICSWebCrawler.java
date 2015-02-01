@@ -1,5 +1,6 @@
 package ir.assignments.three;
 
+import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
@@ -13,7 +14,7 @@ import java.util.regex.Pattern;
  * Created by dch on 1/31/15.
  */
 public class ICSWebCrawler extends WebCrawler {
-    private static HashSet<String> visited = new HashSet<String>();
+//    private static HashSet<String> visited = new HashSet<String>();
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|bmp|gif|jpe?g"
             + "|png|tiff?|mid|mp2|mp3|mp4"
             + "|wav|avi|mov|mpeg|ram|m4v|pdf"
@@ -26,13 +27,18 @@ public class ICSWebCrawler extends WebCrawler {
      */
     @Override
     public boolean shouldVisit(WebURL url) {
-        boolean success = true;
+        boolean success = false;
         String href = url.getURL().toLowerCase();
         // here to check if we've visited a page already, we won't visit that page
-        if (visited.contains(href))
-            return false;
-        // handle sub domain matching logic
-        return !FILTERS.matcher(href).matches() && href.startsWith("http://www.ics.uci.edu/");
+        if (CrawlerController.urls.contains(href)) {
+            System.out.println("We've been to the URL: " + href); // printing that we've been here and wont visit
+            success = false;
+        }         // handle sub domain matching logic
+        else if (!FILTERS.matcher(href).matches() && href.startsWith("http://www.ics.uci.edu/")) {
+           CrawlerController.urls.add(href);
+           success = true;
+        }
+        return success;
     }
 
     /**

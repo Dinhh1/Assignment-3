@@ -12,16 +12,16 @@ public class Crawler {
 	 * collection containing all URLs visited during the crawl.
 	 */
 	public static Collection<String> crawl(String seedURL) {
-		// TODO implement me
-		return null;
-	}
-
-	public static void main(String[] args) {
 		try {
-			CrawlerController.init();
+			CrawlerController.init(seedURL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return CrawlerController.urls;
+	}
+
+	public static void main(String[] args) {
+		Collection<String> urls = crawl("http://www.ics.uci.edu");
 	}
 
 }
