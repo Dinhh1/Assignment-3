@@ -1,5 +1,6 @@
 package ir.assignments.three;
 
+import com.sun.tools.javac.util.Pair;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
@@ -79,12 +80,12 @@ public class ICSWebCrawler extends WebCrawler {
         if (page.getParseData() instanceof HtmlParseData) {
             HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
             String text = htmlParseData.getText();
-            String html = htmlParseData.getHtml();
-            List<WebURL> links = htmlParseData.getOutgoingUrls();
+//            String html = htmlParseData.getHtml();
+//            List<WebURL> links = htmlParseData.getOutgoingUrls();
 
             //Obtain longest text length
-            if (text.length() > CrawlerController.maxTextLength)
-                CrawlerController.maxTextLength = text.length();
+            if (text.length() > CrawlerController.longestPage.snd)
+                CrawlerController.longestPage = new Pair<String, Integer>(url, text.length());
             CrawlerController.wordList = Utils.computeWordFrequency(Utilities.tokenizeString(text), CrawlerController.wordList);
 
             //Obtain 500 most common words

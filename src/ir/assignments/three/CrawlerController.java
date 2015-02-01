@@ -1,5 +1,6 @@
 package ir.assignments.three;
 
+import com.sun.tools.javac.util.Pair;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
@@ -20,7 +21,7 @@ public class CrawlerController {
     public CrawlerController() {}
 
 
-    private static final String USER_AGENT = "UCI Inf141-CS121 crawler 12345678 87654321";
+    private static final String USER_AGENT = "UCI Inf141-CS121 crawler 73374042 87654321 83689220";
     private static final int CRAWLER_DELAY = 300;
     private static final int NUMBER_OF_CRAWLERS = 500;
 
@@ -29,7 +30,8 @@ public class CrawlerController {
     public static HashMap<String, Frequency> domainMap = new HashMap<String, Frequency>();
     public static HashSet<String> urls = new HashSet<String>();
     public static HashSet<String> stopwords = new HashSet<String>( ir.assignments.two.a.Utilities.tokenizeFile(new File(System.getProperty("user.dir").concat("/stopwords.txt"))));
-    public static int maxTextLength = 0;
+//    public static int maxTextLength = 0;
+    public static Pair<String, Integer> longestPage = new Pair<String, Integer>("", 0);
 //    public static ArrayList<Frequency> wordList = new ArrayList<Frequency>();
 
     public static HashMap<String, Frequency> wordList = new HashMap<String, Frequency>();

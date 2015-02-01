@@ -34,7 +34,9 @@ public class Crawler {
 		long stopTime = System.currentTimeMillis();
 		long runTime = stopTime - startTime;
 		System.out.println("Run time: " + TimeUnit.MILLISECONDS.toMinutes(runTime));
-		// now lets write the subdomain to text
+		System.out.println("Number of unique pages: " + urls.size());
+		System.out.println("Longest page: " + CrawlerController.longestPage.toString());
+				// now lets write the subdomain to text
 		Utils.writeSubdomain(CrawlerController.domainMap);
 		Utils.writeCommonWords(CrawlerController.wordList);
 	}
