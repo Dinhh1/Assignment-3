@@ -22,7 +22,14 @@ public class Crawler {
 
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
 		Collection<String> urls = crawl("http://www.ics.uci.edu");
+		long stopTime = System.currentTimeMillis();
+		long runTime = stopTime - startTime;
+		Time.
+		System.out.println("Run time: " + runTime);
+
+
 	}
 
 }
