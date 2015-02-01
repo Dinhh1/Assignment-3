@@ -5,6 +5,9 @@ import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
+import ir.assignments.two.a.Frequency;
+import ir.assignments.two.a.Utilities;
+import ir.assignments.two.b.WordFrequencyCounter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -84,7 +87,7 @@ public class ICSWebCrawler extends WebCrawler {
                 CrawlerController.maxTextLength = text.length();
 
             //Obtain 500 most common words
-
+            //CrawlerController.wordList.addAll(WordFrequencyCounter.computeWordFrequencies(Utilities.tokenizeString(text)));
 
             System.out.println("Text length: " + text.length());
             System.out.println("Html length: " + html.length());

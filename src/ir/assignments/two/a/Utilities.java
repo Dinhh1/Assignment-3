@@ -65,6 +65,19 @@ public class Utilities {
 		return tokens;
 	}
 
+	public static ArrayList<String> tokenizeString(String text) {
+		//Initialize list of string (tokens)
+		ArrayList<String> tokens = new ArrayList<String>();
+		String[] lineToken = text.split("[[^a-zA-z]\\p{Punct}\\s]+");
+		for (String str : lineToken)
+		{
+			if (!str.equals(""))
+				tokens.add(str.toLowerCase());
+		}
+
+		return tokens;
+	}
+
 	/**
 	 * Takes a list of {@link Frequency}s and prints it to standard out. It also
 	 * prints out the total number of items, and the total number of unique items.
