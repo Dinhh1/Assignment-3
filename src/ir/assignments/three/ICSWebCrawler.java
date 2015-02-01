@@ -19,7 +19,7 @@ public class ICSWebCrawler extends WebCrawler {
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|bmp|gif|jpe?g"
             + "|png|tiff?|mid|mp2|mp3|mp4"
             + "|wav|avi|mov|mpeg|ram|m4v|pdf"
-            + "|rm|smil|wmv|swf|wma|zip|rar|gz|h|py|c|cpp|java|xml|thmx|dat|txt||csv|pde|R|csl|bib))$");
+            + "|rm|smil|wmv|swf|wma|zip|rar|gz|h|py|c|cpp|java|xml|thmx|dat|txt||csv|pde|R|csl|bib|vcf))$");
 //    private final static Pattern FILTERS = Pattern.compile(".*(\\.(php|htm|html|asp|jsp))$");
 
     /**
@@ -36,7 +36,7 @@ public class ICSWebCrawler extends WebCrawler {
             return false;
         }         // handle sub domain matching logic
         else
-            return !FILTERS.matcher(href).matches() && href.startsWith("http://www.ics.uci.edu/");
+            return !FILTERS.matcher(href).matches() && href.contains(".ics.uci.edu");
     }
     
 
