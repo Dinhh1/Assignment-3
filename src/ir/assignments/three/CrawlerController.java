@@ -8,6 +8,7 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 
 
@@ -18,14 +19,18 @@ public class CrawlerController {
     public CrawlerController() {}
 
 
-    private static final String USER_AGENT = "UCI Inf141-CS121 crawler 73374042 82757831 83689220";
+    private static final String USER_AGENT = "UCI Inf141-CS121 crawler 12345678 87654321";
     private static final int CRAWLER_DELAY = 300;
-    private static final int NUMBER_OF_CRAWLERS = 100;
+    private static final int NUMBER_OF_CRAWLERS = 500;
 
+
+    //Key: Doman, Value: Sub-Domain Set
+    public static HashMap<String, HashSet<String> > domainMap = new HashMap<String, HashSet<String>>();
     public static HashSet<String> urls = new HashSet<String>();
+    public static int maxTextLength = 0;
 
     public static void init(String urlSeed) throws Exception {
-        String crawlStorageFolder = "/data/crawl/root";
+        String crawlStorageFolder = System.getProperty("user.dir").concat("/data/crawl/root");
         int numberOfCrawlers = NUMBER_OF_CRAWLERS;
 
         CrawlConfig config = new CrawlConfig();
@@ -40,5 +45,6 @@ public class CrawlerController {
         CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
         controller.addSeed(urlSeed);
         controller.start(ICSWebCrawler.class, numberOfCrawlers);
+
     }
 }

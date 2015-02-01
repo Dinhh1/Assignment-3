@@ -20,7 +20,8 @@ public class Crawler {
 		return CrawlerController.urls;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		Collection<String> urls = crawl("http://www.ics.uci.edu");
 	}
 

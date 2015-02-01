@@ -30,3 +30,11 @@ Assignment 3.iml
 *.class
 
 *.iml
+
+*.0
+
+*.jdb
+
+*.lck
+
+*.txt
