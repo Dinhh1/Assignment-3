@@ -6,11 +6,10 @@ import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import java.io.File;
 
 /**
  * Created by dinhho on 1/31/15.
@@ -27,6 +26,7 @@ public class CrawlerController {
     //Key: Doman, Value: Sub-Domain Set
     public static HashMap<String, HashSet<String> > domainMap = new HashMap<String, HashSet<String>>();
     public static HashSet<String> urls = new HashSet<String>();
+    public static HashSet<String> stopwords = new HashSet<String>( ir.assignments.two.a.Utilities.tokenizeFile(new File(System.getProperty("user.dir").concat("/stopwords.txt"))));
     public static int maxTextLength = 0;
 
     public static void init(String urlSeed) throws Exception {
