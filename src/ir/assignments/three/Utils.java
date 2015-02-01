@@ -1,5 +1,6 @@
 package ir.assignments.three;
 
+import ir.assignments.two.a.FreqComparator;
 import ir.assignments.two.a.Frequency;
 
 import java.io.BufferedWriter;
@@ -13,7 +14,31 @@ import java.util.*;
  */
 public class Utils {
 
+    public static void writeCommonWords(HashMap<String,Frequency> wordList)
+    {
 
+
+        BufferedWriter output = null;
+        try {
+            File file = new File(System.getProperty("user.dir") + "/" + "CommonWords.txt");
+            output = new BufferedWriter(new FileWriter(file));
+
+            ArrayList<Frequency> f = new ArrayList<Frequency>(wordList.values());
+            Collections.sort(f, new FreqComparator());
+            for (int i = 0; i < 499; i++) {
+                output.write(f.get(i) + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                output.close();
+            } catch (IOException e) {
+                System.out.println("Fail to close CommonWords.txt");
+            }
+        }
+
+    }
 
     public static HashMap<String, Frequency> computeWordFrequency(ArrayList<String> words,
                                                                   HashMap<String, Frequency> freqMap) {
