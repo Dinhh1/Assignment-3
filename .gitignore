@@ -40,3 +40,5 @@ Assignment 3.iml
 *.txt
 
 *.1
+
+out/production/Assignment 3/log4j.properties
