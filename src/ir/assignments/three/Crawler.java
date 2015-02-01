@@ -1,6 +1,7 @@
 package ir.assignments.three;
 
 import java.util.Collection;
+import java.util.concurrent.TimeUnit;
 
 public class Crawler {
 	/**
@@ -26,8 +27,7 @@ public class Crawler {
 		Collection<String> urls = crawl("http://www.ics.uci.edu");
 		long stopTime = System.currentTimeMillis();
 		long runTime = stopTime - startTime;
-		Time.
-		System.out.println("Run time: " + runTime);
+		System.out.println("Run time: " + TimeUnit.MILLISECONDS.toMinutes(runTime));
 
 
 	}
