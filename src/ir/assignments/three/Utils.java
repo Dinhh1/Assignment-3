@@ -13,6 +13,23 @@ import java.util.*;
  */
 public class Utils {
 
+
+
+    public static HashMap<String, Frequency> computeWordFrequency(ArrayList<String> words,
+                                                                  HashMap<String, Frequency> freqMap) {
+        if (freqMap == null)
+            freqMap = new HashMap<String, Frequency>();
+        if (words== null || words.size() == 0)
+            return freqMap;
+        for (String word : words) {
+            if (freqMap.containsKey(word))
+                freqMap.get(word).incrementFrequency();
+            else
+                freqMap.put(word, new Frequency(word, 1));
+        }
+        return freqMap;
+
+    }
     /*
     This method will create our subdomain file
      */

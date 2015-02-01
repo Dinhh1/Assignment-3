@@ -72,7 +72,7 @@ public class ICSWebCrawler extends WebCrawler {
         if (CrawlerController.domainMap.containsKey(subdomain)) {
             CrawlerController.domainMap.get(subdomain).incrementFrequency();
         } else {
-            CrawlerController.domainMap.put(subdomain, new Frequency(subdomain,1));
+            CrawlerController.domainMap.put(subdomain, new Frequency(subdomain, 1));
         }
 
 
@@ -85,9 +85,10 @@ public class ICSWebCrawler extends WebCrawler {
             //Obtain longest text length
             if (text.length() > CrawlerController.maxTextLength)
                 CrawlerController.maxTextLength = text.length();
+            CrawlerController.wordList = Utils.computeWordFrequency(Utilities.tokenizeString(text), CrawlerController.wordList);
 
             //Obtain 500 most common words
-            //CrawlerController.wordList.addAll(WordFrequencyCounter.computeWordFrequencies(Utilities.tokenizeString(text)));
+//            CrawlerController.wordList.addAll(WordFrequencyCounter.computeWordFrequencies(Utilities.tokenizeString(text)));
 
 //            System.out.println("Text length: " + text.length());
 //            System.out.println("Html length: " + html.length());

@@ -47,6 +47,7 @@ public final class WordFrequencyCounter {
 	 * @return A list of word frequencies, ordered by decreasing frequency.
 	 *
 	 */
+
 	public static List<Frequency> computeWordFrequencies(List<String> words) {
 	   /*
 		* Logic for the solution:
@@ -56,7 +57,8 @@ public final class WordFrequencyCounter {
 		* 			then increment word count
 		* 		else:
 		*			then add new word
- 		*/			ArrayList<Frequency> freqList = new ArrayList<Frequency>();
+ 		*/
+		ArrayList<Frequency> freqList = new ArrayList<Frequency>();
 
 		Collections.sort(words);
 

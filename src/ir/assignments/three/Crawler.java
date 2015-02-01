@@ -1,8 +1,12 @@
 package ir.assignments.three;
 
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
+import ir.assignments.two.a.FreqComparator;
+import ir.assignments.two.a.Frequency;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 public class Crawler {
@@ -32,6 +36,11 @@ public class Crawler {
 		System.out.println("Run time: " + TimeUnit.MILLISECONDS.toMinutes(runTime));
 		// now lets write the subdomain to text
 		Utils.writeSubdomain(CrawlerController.domainMap);
+		ArrayList<Frequency> f = new ArrayList<Frequency>(CrawlerController.wordList.values());
+		Collections.sort(f, new FreqComparator());
+		for (int i = 0; i < 499; i++) {
+
+		}
 	}
 
 }
