@@ -23,7 +23,8 @@ public class ICSWebCrawler extends WebCrawler {
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|bmp|gif|jpe?g"
             + "|png|tiff?|mid|mp2|mp3|mp4"
             + "|wav|avi|mov|mpeg|ram|m4v|pdf"
-            + "|rm|smil|wmv|swf|wma|zip|rar|gz|h|py|c|cpp|java|xml|thmx|dat|txt||csv|pde|R|csl|bib|vcf|lif))$");
+            + "|rm|smil|wmv|swf|wma|zip|rar|gz|h|py|c|cpp|java|xml|thmx|dat||csv|pde|R|csl|bib|vcf|lif"
+            + "|mso|ps|pptx|m|ppt|doc|docx|flv))$");
 //    private final static Pattern FILTERS = Pattern.compile(".*(\\.(php|htm|html|asp|jsp))$");
 
     /**
