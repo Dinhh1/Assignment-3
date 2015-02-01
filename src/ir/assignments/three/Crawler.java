@@ -30,10 +30,11 @@ public class Crawler {
 	public static void main(String[] args)
 	{
 		long startTime = System.currentTimeMillis();
+		System.out.println("Starting...");
 		Collection<String> urls = crawl("http://www.ics.uci.edu");
 		long stopTime = System.currentTimeMillis();
 		long runTime = stopTime - startTime;
-		System.out.println("Run time: " + TimeUnit.MILLISECONDS.toMinutes(runTime));
+		System.out.println("Run time: " + TimeUnit.MILLISECONDS.toSeconds(runTime));
 		System.out.println("Number of unique pages: " + urls.size());
 		System.out.println("Longest page: " + CrawlerController.longestPage.toString());
 				// now lets write the subdomain to text

@@ -23,7 +23,7 @@ public class CrawlerController {
 
     private static final String USER_AGENT = "UCI Inf141-CS121 crawler 73374042 87654321 83689220";
     private static final int CRAWLER_DELAY = 300;
-    private static final int NUMBER_OF_CRAWLERS = 500;
+    private static final int NUMBER_OF_CRAWLERS = 1;
 
 
     //Key: Doman, Value: Sub-Domain Set
@@ -44,7 +44,8 @@ public class CrawlerController {
         config.setCrawlStorageFolder(crawlStorageFolder);
         config.setPolitenessDelay(CRAWLER_DELAY); // setting politeness
         config.setUserAgentString(USER_AGENT);
-
+        config.setResumableCrawling(true);
+        config.setMaxPagesToFetch(5);
         PageFetcher pageFetcher = new PageFetcher(config);
 
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
@@ -52,6 +53,5 @@ public class CrawlerController {
         CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
         controller.addSeed(urlSeed);
         controller.start(ICSWebCrawler.class, numberOfCrawlers);
-
     }
 }

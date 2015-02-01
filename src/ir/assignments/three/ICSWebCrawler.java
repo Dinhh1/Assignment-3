@@ -74,6 +74,7 @@ public class ICSWebCrawler extends WebCrawler {
             CrawlerController.domainMap.get(subdomain).incrementFrequency();
         } else {
             CrawlerController.domainMap.put(subdomain, new Frequency(subdomain, 1));
+            System.out.println("added new domain: " + subdomain);
         }
 
 
