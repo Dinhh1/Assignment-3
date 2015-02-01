@@ -35,17 +35,10 @@ public class ICSWebCrawler extends WebCrawler {
             System.out.println("We've been to the URL: " + href); // printing that we've been here and wont visit\
             return false;
         }         // handle sub domain matching logic
-<<<<<<< HEAD
         else
             return !FILTERS.matcher(href).matches() && href.startsWith("http://www.ics.uci.edu/");
-=======
-        else if (!FILTERS.matcher(href).matches() && href.contains("http://www.ics.uci.edu/")) {
-           CrawlerController.urls.add(href);
-           success = true;
-        }
-        return success;
->>>>>>> FETCH_HEAD
     }
+    
 
     /**
      * This function is called when a page is fetched and ready
