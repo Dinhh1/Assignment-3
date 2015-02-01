@@ -16,7 +16,7 @@ public class CrawlerController {
 
     private static final String USER_AGENT = "UCI Inf141-CS121 crawler 73374042 82757831 83689220";
     private static final int CRAWLER_DELAY = 300;
-    private static final int NUMBER_OF_CRAWLERS = 1;
+    private static final int NUMBER_OF_CRAWLERS = 100;
 
     public static void init() throws Exception {
         String crawlStorageFolder = "/data/crawl/root";
