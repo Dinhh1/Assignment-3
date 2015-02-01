@@ -28,8 +28,6 @@ public class Crawler {
 		long stopTime = System.currentTimeMillis();
 		long runTime = stopTime - startTime;
 		System.out.println("Run time: " + TimeUnit.MILLISECONDS.toMinutes(runTime));
-
-
 	}
 
 }
