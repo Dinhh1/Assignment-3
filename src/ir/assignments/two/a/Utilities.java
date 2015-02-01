@@ -1,5 +1,7 @@
 package ir.assignments.two.a;
 
+import ir.assignments.three.CrawlerController;
+
 import java.io.*;
 import java.util.StringTokenizer;
 import java.util.ArrayList;
@@ -69,9 +71,10 @@ public class Utilities {
 		//Initialize list of string (tokens)
 		ArrayList<String> tokens = new ArrayList<String>();
 		String[] lineToken = text.split("[[^a-zA-z]\\p{Punct}\\s]+");
+
 		for (String str : lineToken)
 		{
-			if (!str.equals(""))
+			if (!str.equals("") && !CrawlerController.stopwords.contains(str))
 				tokens.add(str.toLowerCase());
 		}
 
