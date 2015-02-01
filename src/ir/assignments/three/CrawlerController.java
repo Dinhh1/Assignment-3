@@ -23,7 +23,7 @@ public class CrawlerController {
 
     private static final String USER_AGENT = "UCI Inf141-CS121 crawler 73374042 87654321 83689220";
     private static final int CRAWLER_DELAY = 300;
-    private static final int NUMBER_OF_CRAWLERS = 1;
+    private static final int NUMBER_OF_CRAWLERS = 500;
 
 
     //Key: Doman, Value: Sub-Domain Set
@@ -32,7 +32,6 @@ public class CrawlerController {
     public static HashSet<String> stopwords = new HashSet<String>( ir.assignments.two.a.Utilities.tokenizeFile(new File(System.getProperty("user.dir").concat("/stopwords.txt"))));
 //    public static int maxTextLength = 0;
     public static Pair<String, Integer> longestPage = new Pair<String, Integer>("", 0);
-//    public static ArrayList<Frequency> wordList = new ArrayList<Frequency>();
 
     public static HashMap<String, Frequency> wordList = new HashMap<String, Frequency>();
 
@@ -44,8 +43,6 @@ public class CrawlerController {
         config.setCrawlStorageFolder(crawlStorageFolder);
         config.setPolitenessDelay(CRAWLER_DELAY); // setting politeness
         config.setUserAgentString(USER_AGENT);
-        config.setResumableCrawling(true);
-        config.setMaxPagesToFetch(5);
         PageFetcher pageFetcher = new PageFetcher(config);
 
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();

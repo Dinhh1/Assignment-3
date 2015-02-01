@@ -25,7 +25,10 @@ public class Utils {
 
             ArrayList<Frequency> f = new ArrayList<Frequency>(wordList.values());
             Collections.sort(f, new FreqComparator());
-            for (int i = 0; i < 499; i++) {
+            int size = f.size();
+            if (size > 499)
+                size = 499;
+            for (int i = 0; i < size; i++) {
                 output.write(f.get(i) + "\n");
             }
         } catch (IOException e) {
