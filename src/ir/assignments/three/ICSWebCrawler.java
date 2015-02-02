@@ -39,9 +39,16 @@ public class ICSWebCrawler extends WebCrawler {
         //TODO:: NEED TO MAKE SURE WE AVOID ALL TRAPS HERE
         // here to check if we've visited a page already, we won't visit that page
         if (CrawlerController.urls.contains(href)) {
+            System.out.println("ALERT!!!!!! TRAPPED ENCOUNTERED \n");
+            System.out.println("We've been to the URL: " + href + "\n"); // printing that we've been here and wont visit\
             return false;
         }
-        else if (href.contains("?")) {// the ? indiciates query string from a page that can create an infinite number of websites, we will ignore any ?
+        // the ? indiciates query string from a page that can create an infinite number of websites, we will ignore any ?
+        // this also means we are ignoring any dynamically generated pages
+        else if (href.contains("?")) {
+//            System.out.println("ALERT!!!!!! TRAPPED ENCOUNTERED");
+//            System.out.println("We encountered a site with ?: " + href);
+//            System.out.println("Will not add");
             return false;
         }
         else
