@@ -36,13 +36,13 @@ public class ICSWebCrawler extends WebCrawler {
     public boolean shouldVisit(WebURL url) {
         String href = url.getURL().toLowerCase();
         // crawler trap logic here
-
+        //TODO:: NEED TO MAKE SURE WE AVOID ALL TRAPS HERE
         // here to check if we've visited a page already, we won't visit that page
         if (CrawlerController.urls.contains(href)) {
             System.out.println("We've been to the URL: " + href); // printing that we've been here and wont visit\
             return false;
         }
-        else if (href.contains("?"))
+        else if (href.contains("?")) // the ? indiciates query string from a page that can create an infinite number of websites, we will ignore any ?
             return false;
         else
             return !FILTERS.matcher(href).matches() && href.contains(".ics.uci.edu");
