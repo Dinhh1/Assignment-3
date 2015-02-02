@@ -35,6 +35,8 @@ public class ICSWebCrawler extends WebCrawler {
     @Override
     public boolean shouldVisit(WebURL url) {
         String href = url.getURL().toLowerCase();
+        // crawler trap logic here
+        
         // here to check if we've visited a page already, we won't visit that page
         if (CrawlerController.urls.contains(href)) {
             System.out.println("We've been to the URL: " + href); // printing that we've been here and wont visit\
