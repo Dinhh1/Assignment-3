@@ -31,7 +31,7 @@ public class Crawler {
 	{
 		long startTime = System.currentTimeMillis();
 		System.out.println("Starting...");
-		Collection<String> urls = crawl("http://www.ics.uci.edu");
+		Collection<String> urls = crawl("http://archive.ics.uci.edu/ml/datasets.html");
 		long stopTime = System.currentTimeMillis();
 		long runTime = stopTime - startTime;
 		System.out.println("Run time: " + TimeUnit.MILLISECONDS.toSeconds(runTime));

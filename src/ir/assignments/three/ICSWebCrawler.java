@@ -22,9 +22,9 @@ public class ICSWebCrawler extends WebCrawler {
 //    private static HashSet<String> visited = new HashSet<String>();
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|bmp|gif|jpe?g"
             + "|png|tiff?|mid|mp2|mp3|mp4"
-            + "|wav|avi|mov|mpeg|ram|m4v|pdf"
+            + "|wav|avi|mov|mpeg|ram|m4v|mpg|pdf"
             + "|rm|smil|wmv|swf|wma|zip|rar|gz|h|py|c|cpp|java|xml|thmx|dat||csv|pde|R|csl|bib|vcf|lif"
-            + "|mso|ps|pptx|m|ppt|doc|docx|flv|data|pl|arff|tar|tgz))$");
+            + "|mso|ps|pptx|m|ppt|doc|docx|flv|data|pl|arff|tar|tgz|7z))$");
 //    private final static Pattern FILTERS = Pattern.compile(".*(\\.(php|htm|html|asp|jsp))$");
 
     /**
@@ -39,11 +39,11 @@ public class ICSWebCrawler extends WebCrawler {
         //TODO:: NEED TO MAKE SURE WE AVOID ALL TRAPS HERE
         // here to check if we've visited a page already, we won't visit that page
         if (CrawlerController.urls.contains(href)) {
-            System.out.println("We've been to the URL: " + href); // printing that we've been here and wont visit\
             return false;
         }
-        else if (href.contains("?")) // the ? indiciates query string from a page that can create an infinite number of websites, we will ignore any ?
+        else if (href.contains("?")) {// the ? indiciates query string from a page that can create an infinite number of websites, we will ignore any ?
             return false;
+        }
         else
             return !FILTERS.matcher(href).matches() && href.contains(".ics.uci.edu");
     }
