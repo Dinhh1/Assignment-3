@@ -87,4 +87,23 @@ public class Utils {
             }
         }
     }
+
+    public static void writeCollectionList(Collection<String> urls) {
+        BufferedWriter output = null;
+        try {
+            File file = new File(System.getProperty("user.dir") + "/" + "crawled_sites.txt");
+            output = new BufferedWriter(new FileWriter(file));
+            for (String site : urls) {
+                output.write(site + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                output.close();
+            } catch (IOException e) {
+                System.out.println("Fail to close urls.txt");
+            }
+        }
+    }
 }
