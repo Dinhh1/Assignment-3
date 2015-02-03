@@ -37,8 +37,16 @@ Assignment 3.iml
 
 *.lck
 
-*.txt
 
+<<<<<<< Updated upstream
 *.1
+<<<<<<< Updated upstream
 
 out/production/Assignment 3/log4j.properties
+=======
+=======
+*.xml
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+
+*.zip
