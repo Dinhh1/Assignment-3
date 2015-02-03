@@ -6,13 +6,16 @@ import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
-import ir.assignments.two.a.Utilities;
-import ir.assignments.two.b.WordFrequencyCounter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+
 
 /**
  * Created by dch on 1/31/15.
@@ -111,6 +114,21 @@ public class ICSWebCrawler extends WebCrawler {
                 CrawlerController.wordList = Utils.computeWordFrequency(Utils.tokenizeString(text), CrawlerController.wordList);
             }
 
+            //Obtain longest text length
+            if (text.length() > CrawlerController.longestPage.snd)
+                CrawlerController.longestPage = new Pair<String, Integer>(url, text.length());
+            CrawlerController.wordList = Utils.computeWordFrequency(Utils.tokenizeString(text), CrawlerController.wordList);
+            for(Frequency freq : CrawlerController.wordList.values())
+            {
+                if(freq.getText().equals("b") || freq.getText().equals("s") || freq.getText().equals("x") || freq.getText().equals("d"))
+                {
+                    System.out.println("FOUND!!!!!!!!!");
+                    System.out.println(url);
+                    ArrayList<Frequency> values = new ArrayList<Frequency>(CrawlerController.wordList.values());
+                    Collections.sort(values, new FreqComparator());
+                    System.out.println(values.toString());
+                }
+            }
             //Obtain 500 most common words
 //            CrawlerController.wordList.addAll(WordFrequencyCounter.computeWordFrequencies(Utilities.tokenizeString(text)));
 

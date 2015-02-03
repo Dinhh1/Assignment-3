@@ -1,7 +1,7 @@
 package ir.assignments.three;
 
 
-
+import java.io.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -12,7 +12,58 @@ import java.util.*;
  * Created by dinhho on 1/31/15.
  */
 public class Utils {
-    final private static HashSet<String> stopwords = new HashSet<String>( ir.assignments.two.a.Utilities.tokenizeFile(new File(System.getProperty("user.dir").concat("/stopwords.txt"))));
+    final private static HashSet<String> stopwords = new HashSet<String>( Utils.tokenizeFile(new File(System.getProperty("user.dir").concat("/stopwords.txt"))));
+
+    public static ArrayList<String> tokenizeFile(File input) {
+        //Initialize list of string (tokens)
+        ArrayList<String> tokens = new ArrayList<String>();
+        try {
+            FileInputStream fstream = new FileInputStream(input);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fstream));
+            String newLine = "";
+            while((newLine = reader.readLine()) != null)
+            {
+                /**
+                 * Regular expression:
+                 * - splits by non-alphanumeric characters
+                 * - Splits by Punctuation(\p{Punct}: One of !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ from Oracle Pattern documentations
+                 * - Splits by Whitespaces (\s)
+                 *
+                 **/
+                String[] lineToken = newLine.split("[[^a-zA-z]\\p{Punct}\\s]+");
+                for (String str : lineToken)
+                {
+                    if (!str.equals(""))
+                        tokens.add(str.toLowerCase());
+                }
+            }
+            //Close reader
+            reader.close();
+
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("ERROR: File was not found.");
+        } catch(Exception e) {
+            System.out.println("An Error Occurred.");
+
+        }
+
+        return tokens;
+    }
+
+    public static ArrayList<String> tokenizeString(String text)
+    {
+        //Initialize list of string (tokens)
+        ArrayList<String> tokens = new ArrayList<String>();
+        String[] lineToken = text.split("[[^a-zA-z]\\p{Punct}\\s]+");
+
+        for (String str : lineToken)
+        {
+            if (!str.equals("") && !stopwords.contains(str))
+                tokens.add(str.toLowerCase());
+        }
+
+        return tokens;
+    }
 
     public static void writeCommonWords(HashMap<String,Frequency> wordList)
     {
@@ -43,7 +94,7 @@ public class Utils {
 
     }
 
-    public static ArrayList<String> tokenizeString(String input) {
+    public static ArrayList<String> tokenizeString_new(String input) {
         ArrayList<String> words = new ArrayList<String>();
         String newLine = input;
         // remove all non-alphanumeric characters
