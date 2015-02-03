@@ -24,7 +24,7 @@ public class ICSWebCrawler extends WebCrawler {
             + "|png|tiff?|mid|mp2|mp3|mp4"
             + "|wav|avi|mov|mpeg|ram|m4v|mpg|pdf"
             + "|rm|smil|wmv|swf|wma|zip|rar|gz|h|py|c|cpp|java|xml|thmx|dat||csv|pde|R|csl|bib|vcf|lif"
-            + "|mso|ps|pptx|m|ppt|doc|docx|flv|data|pl|arff|tar|tgz|7z|psd|tga|dll|jar|so|a|uai|exe|wav|raw|mat|bz2|xls|ppsx|db))$");
+            + "|mso|ps|pptx|m|ppt|doc|docx|flv|data|pl|arff|tar|tgz|7z|psd|tga|dll|jar|so|a|uai|exe|wav|raw|mat|bz2|xls|ppsx|db|bg))$");
 //    private final static Pattern FILTERS = Pattern.compile(".*(\\.(php|htm|html|asp|jsp))$");
 
     /**
@@ -45,12 +45,13 @@ public class ICSWebCrawler extends WebCrawler {
         }
         // the ? indiciates query string from a page that can create an infinite number of websites, we will ignore any ?
         // this also means we are ignoring any dynamically generated pages
-        else if (href.contains("?")) {
+        else if (href.contains("?") && href.contains("archive")) {
 //            System.out.println("ALERT!!!!!! TRAPPED ENCOUNTERED");
 //            System.out.println("We encountered a site with ?: " + href);
 //            System.out.println("Will not add");
             return false;
-        }
+        } else if (href.contains("?") && href.contains("calendar"))
+            return false;
         else
             return !FILTERS.matcher(href).matches() && href.contains(".ics.uci.edu");
     }
@@ -74,20 +75,24 @@ public class ICSWebCrawler extends WebCrawler {
         String url = page.getWebURL().getURL();
 
         //Add url to visited list
-        CrawlerController.urls.add(url);
+        synchronized (CrawlerController.urls) {
+            CrawlerController.urls.add(url);
+        }
         //print the added url
 //        System.out.println("URL: " + url);
 
         String subdomain = url;
         int lastIndex = url.indexOf(".edu");
         subdomain = url.substring(0,lastIndex+4);
-
-        if (CrawlerController.domainMap.containsKey(subdomain)) {
-            CrawlerController.domainMap.get(subdomain).incrementFrequency();
-        } else {
-            CrawlerController.domainMap.put(subdomain, new Frequency(subdomain, 1));
-            System.out.println("added new domain: " + subdomain);
+        synchronized (CrawlerController.domainMap) {
+            if (CrawlerController.domainMap.containsKey(subdomain)) {
+                CrawlerController.domainMap.get(subdomain).incrementFrequency();
+            } else {
+                CrawlerController.domainMap.put(subdomain, new Frequency(subdomain, 1));
+                System.out.println("added new domain: " + subdomain);
+            }
         }
+
 
 
         if (page.getParseData() instanceof HtmlParseData) {
@@ -95,11 +100,14 @@ public class ICSWebCrawler extends WebCrawler {
             String text = htmlParseData.getText();
 //            String html = htmlParseData.getHtml();
 //            List<WebURL> links = htmlParseData.getOutgoingUrls();
-
-            //Obtain longest text length
-            if (text.length() > CrawlerController.longestPage.snd)
-                CrawlerController.longestPage = new Pair<String, Integer>(url, text.length());
-            CrawlerController.wordList = Utils.computeWordFrequency(Utilities.tokenizeString(text), CrawlerController.wordList);
+            synchronized (CrawlerController.longestPage) {
+                //Obtain longest text length
+                if (text.length() > CrawlerController.longestPage.snd)
+                    CrawlerController.longestPage = new Pair<String, Integer>(url, text.length());
+            }
+            synchronized (CrawlerController.wordList) {
+                CrawlerController.wordList = Utils.computeWordFrequency(Utilities.tokenizeString(text), CrawlerController.wordList);
+            }
 
             //Obtain 500 most common words
 //            CrawlerController.wordList.addAll(WordFrequencyCounter.computeWordFrequencies(Utilities.tokenizeString(text)));
