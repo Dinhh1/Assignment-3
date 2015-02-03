@@ -111,23 +111,7 @@ public class ICSWebCrawler extends WebCrawler {
                     CrawlerController.longestPage = new Pair<String, Integer>(url, text.length());
             }
             synchronized (CrawlerController.wordList) {
-                CrawlerController.wordList = Utils.computeWordFrequency(Utils.tokenizeString(text), CrawlerController.wordList);
-            }
-
-            //Obtain longest text length
-            if (text.length() > CrawlerController.longestPage.snd)
-                CrawlerController.longestPage = new Pair<String, Integer>(url, text.length());
-            CrawlerController.wordList = Utils.computeWordFrequency(Utils.tokenizeString(text), CrawlerController.wordList);
-            for(Frequency freq : CrawlerController.wordList.values())
-            {
-                if(freq.getText().equals("b") || freq.getText().equals("s") || freq.getText().equals("x") || freq.getText().equals("d"))
-                {
-                    System.out.println("FOUND!!!!!!!!!");
-                    System.out.println(url);
-                    ArrayList<Frequency> values = new ArrayList<Frequency>(CrawlerController.wordList.values());
-                    Collections.sort(values, new FreqComparator());
-                    System.out.println(values.toString());
-                }
+                CrawlerController.wordList = Utils.computeWordFrequency(Utils.tokenizeString_new(text), CrawlerController.wordList);
             }
             //Obtain 500 most common words
 //            CrawlerController.wordList.addAll(WordFrequencyCounter.computeWordFrequencies(Utilities.tokenizeString(text)));
