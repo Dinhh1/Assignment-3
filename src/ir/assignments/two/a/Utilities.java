@@ -1,9 +1,9 @@
 package ir.assignments.two.a;
 
 import ir.assignments.three.CrawlerController;
+import ir.assignments.three.Frequency;
 
 import java.io.*;
-import java.util.StringTokenizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +82,7 @@ public class Utilities {
 	}
 
 	/**
-	 * Takes a list of {@link Frequency}s and prints it to standard out. It also
+	 * Takes a list of {@link ir.assignments.three.Frequency}s and prints it to standard out. It also
 	 * prints out the total number of items, and the total number of unique items.
 	 *
 	 * Example one:

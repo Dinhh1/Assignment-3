@@ -1,19 +1,14 @@
 package ir.assignments.three;
 
 import com.sun.tools.javac.util.Pair;
-import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
-import ir.assignments.two.a.Frequency;
-import ir.assignments.two.a.Utilities;
-import ir.assignments.two.b.WordFrequencyCounter;
+
+import java.util.regex.Pattern;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Created by dch on 1/31/15.
@@ -103,6 +98,7 @@ public class ICSWebCrawler extends WebCrawler {
             String text = htmlParseData.getText();
 //            String html = htmlParseData.getHtml();
 //            List<WebURL> links = htmlParseData.getOutgoingUrls();
+<<<<<<< Updated upstream
             synchronized (CrawlerController.longestPage) {
                 //Obtain longest text length
                 if (text.length() > CrawlerController.longestPage.snd)
@@ -111,6 +107,13 @@ public class ICSWebCrawler extends WebCrawler {
             synchronized (CrawlerController.wordList) {
                 CrawlerController.wordList = Utils.computeWordFrequency(Utilities.tokenizeString(text), CrawlerController.wordList);
             }
+=======
+
+            //Obtain longest text length
+            if (text.length() > CrawlerController.longestPage.snd)
+                CrawlerController.longestPage = new Pair<String, Integer>(url, text.length());
+            CrawlerController.wordList = Utils.computeWordFrequency(Utils.tokenizeString(text), CrawlerController.wordList);
+>>>>>>> Stashed changes
 
             //Obtain 500 most common words
 //            CrawlerController.wordList.addAll(WordFrequencyCounter.computeWordFrequencies(Utilities.tokenizeString(text)));

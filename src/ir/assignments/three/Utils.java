@@ -1,18 +1,67 @@
 package ir.assignments.three;
 
-import ir.assignments.two.a.FreqComparator;
-import ir.assignments.two.a.Frequency;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.io.*;
 
 /**
  * Created by dinhho on 1/31/15.
  */
 public class Utils {
+
+    public static ArrayList<String> tokenizeFile(File input) {
+        //Initialize list of string (tokens)
+        ArrayList<String> tokens = new ArrayList<String>();
+        try {
+            FileInputStream fstream = new FileInputStream(input);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fstream));
+            String newLine = "";
+            while((newLine = reader.readLine()) != null)
+            {
+                /**
+                 * Regular expression:
+                 * - splits by non-alphanumeric characters
+                 * - Splits by Punctuation(\p{Punct}: One of !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ from Oracle Pattern documentations
+                 * - Splits by Whitespaces (\s)
+                 *
+                 **/
+                String[] lineToken = newLine.split("[[^a-zA-z]\\p{Punct}\\s]+");
+                for (String str : lineToken)
+                {
+                    if (!str.equals(""))
+                        tokens.add(str.toLowerCase());
+                }
+            }
+            //Close reader
+            reader.close();
+
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("ERROR: File was not found.");
+        } catch(Exception e) {
+            System.out.println("An Error Occurred.");
+
+        }
+
+        return tokens;
+    }
+
+    public static ArrayList<String> tokenizeString(String text)
+    {
+        //Initialize list of string (tokens)
+        ArrayList<String> tokens = new ArrayList<String>();
+        String[] lineToken = text.split("[[^a-zA-z]\\p{Punct}\\s]+");
+
+        for (String str : lineToken)
+        {
+            if (!str.equals("") && !CrawlerController.stopwords.contains(str))
+                tokens.add(str.toLowerCase());
+        }
+
+        return tokens;
+    }
 
     public static void writeCommonWords(HashMap<String,Frequency> wordList)
     {

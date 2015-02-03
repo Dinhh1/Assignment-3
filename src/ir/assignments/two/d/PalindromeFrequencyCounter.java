@@ -1,6 +1,6 @@
 package ir.assignments.two.d;
 
-import ir.assignments.two.a.Frequency;
+import ir.assignments.three.Frequency;
 import ir.assignments.two.a.Utilities;
 
 import java.io.File;

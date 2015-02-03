@@ -6,11 +6,9 @@ import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
-import ir.assignments.two.a.Frequency;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.ArrayList;
 
 import java.io.File;
 
@@ -30,7 +28,7 @@ public class CrawlerController {
     //Key: Doman, Value: Sub-Domain Set
     public static HashMap<String, Frequency> domainMap = new HashMap<String, Frequency>();
     public static HashSet<String> urls = new HashSet<String>();
-    public static HashSet<String> stopwords = new HashSet<String>( ir.assignments.two.a.Utilities.tokenizeFile(new File(System.getProperty("user.dir").concat("/stopwords.txt"))));
+    public static HashSet<String> stopwords = new HashSet<String>( Utils.tokenizeFile(new File(System.getProperty("user.dir").concat("/stopwords.txt"))));
 //    public static int maxTextLength = 0;
     public static Pair<String, Integer> longestPage = new Pair<String, Integer>("", 0);
 

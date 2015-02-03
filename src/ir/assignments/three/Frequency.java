@@ -1,4 +1,4 @@
-package ir.assignments.two.a;
+package ir.assignments.three;
 
 /**
  * Basic class for pairing a word/2-gram/palindrome with its frequency.

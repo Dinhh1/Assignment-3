@@ -1,12 +1,6 @@
 package ir.assignments.three;
 
-import edu.uci.ics.crawler4j.crawler.WebCrawler;
-import ir.assignments.two.a.FreqComparator;
-import ir.assignments.two.a.Frequency;
-
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 public class Crawler {

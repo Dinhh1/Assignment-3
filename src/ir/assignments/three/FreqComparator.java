@@ -1,4 +1,4 @@
-package ir.assignments.two.a;
+package ir.assignments.three;
 
 import java.util.Comparator;
 
