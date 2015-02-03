@@ -1,67 +1,18 @@
 package ir.assignments.three;
 
+
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import java.io.*;
 
 /**
  * Created by dinhho on 1/31/15.
  */
 public class Utils {
-
-    public static ArrayList<String> tokenizeFile(File input) {
-        //Initialize list of string (tokens)
-        ArrayList<String> tokens = new ArrayList<String>();
-        try {
-            FileInputStream fstream = new FileInputStream(input);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fstream));
-            String newLine = "";
-            while((newLine = reader.readLine()) != null)
-            {
-                /**
-                 * Regular expression:
-                 * - splits by non-alphanumeric characters
-                 * - Splits by Punctuation(\p{Punct}: One of !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ from Oracle Pattern documentations
-                 * - Splits by Whitespaces (\s)
-                 *
-                 **/
-                String[] lineToken = newLine.split("[[^a-zA-z]\\p{Punct}\\s]+");
-                for (String str : lineToken)
-                {
-                    if (!str.equals(""))
-                        tokens.add(str.toLowerCase());
-                }
-            }
-            //Close reader
-            reader.close();
-
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("ERROR: File was not found.");
-        } catch(Exception e) {
-            System.out.println("An Error Occurred.");
-
-        }
-
-        return tokens;
-    }
-
-    public static ArrayList<String> tokenizeString(String text)
-    {
-        //Initialize list of string (tokens)
-        ArrayList<String> tokens = new ArrayList<String>();
-        String[] lineToken = text.split("[[^a-zA-z]\\p{Punct}\\s]+");
-
-        for (String str : lineToken)
-        {
-            if (!str.equals("") && !CrawlerController.stopwords.contains(str))
-                tokens.add(str.toLowerCase());
-        }
-
-        return tokens;
-    }
+    final private static HashSet<String> stopwords = new HashSet<String>( ir.assignments.two.a.Utilities.tokenizeFile(new File(System.getProperty("user.dir").concat("/stopwords.txt"))));
 
     public static void writeCommonWords(HashMap<String,Frequency> wordList)
     {
@@ -90,6 +41,22 @@ public class Utils {
             }
         }
 
+    }
+
+    public static ArrayList<String> tokenizeString(String input) {
+        ArrayList<String> words = new ArrayList<String>();
+        String newLine = input;
+        // remove all non-alphanumeric characters
+        // source:
+        // http://stackoverflow.com/questions/11796985/java-regular-expression-to-remove-all-non-alphanumeric-characters-except-spaces
+        newLine = newLine.replaceAll("[^A-Za-z0-9\\s.-]", "").toLowerCase();
+        StringTokenizer st = new StringTokenizer(newLine, " -.\t\n\r\f");
+        while (st.hasMoreTokens()) {
+            String nextToken = st.nextToken();
+            if (!nextToken.equals("") && !stopwords.contains(nextToken))
+                words.add(nextToken);
+        }
+        return words;
     }
 
     public static HashMap<String, Frequency> computeWordFrequency(ArrayList<String> words,

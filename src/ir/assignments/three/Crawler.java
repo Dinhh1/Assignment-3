@@ -28,12 +28,15 @@ public class Crawler {
 		Collection<String> urls = crawl("http://www.ics.uci.edu");
 		long stopTime = System.currentTimeMillis();
 		long runTime = stopTime - startTime;
-		System.out.println("Run time: " + TimeUnit.MILLISECONDS.toSeconds(runTime));
+		System.out.println("Run time in seconds: " + TimeUnit.MILLISECONDS.toSeconds(runTime) + " seconds");
+		System.out.println("Run time in minutes : " + TimeUnit.MILLISECONDS.toMinutes(runTime) + " minutes");
+		System.out.println("Run time in hours : " + TimeUnit.MILLISECONDS.toHours(runTime) + " hours");
 		System.out.println("Number of unique pages: " + urls.size());
 		System.out.println("Longest page: " + CrawlerController.longestPage.toString());
 				// now lets write the subdomain to text
 		Utils.writeSubdomain(CrawlerController.domainMap);
 		Utils.writeCommonWords(CrawlerController.wordList);
+		Utils.writeCollectionList(urls);
 	}
 
 }

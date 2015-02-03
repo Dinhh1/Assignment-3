@@ -19,10 +19,10 @@ public class CrawlerController {
     public CrawlerController() {}
 
 
-    private static final String USER_AGENT = "UCI Inf141-CS121 crawler TEST"; //73374042 87654321 83689220";
+    private static final String USER_AGENT = "UCI Inf141-CS121 crawler 73374042 87654321 83689220";
 
     private static final int CRAWLER_DELAY = 300;
-    private static final int NUMBER_OF_CRAWLERS = 100;
+    private static final int NUMBER_OF_CRAWLERS = 200;
 
 
     //Key: Doman, Value: Sub-Domain Set

@@ -1,14 +1,18 @@
 package ir.assignments.three;
 
 import com.sun.tools.javac.util.Pair;
+import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
-
-import java.util.regex.Pattern;
+import ir.assignments.two.a.Utilities;
+import ir.assignments.two.b.WordFrequencyCounter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by dch on 1/31/15.
@@ -53,7 +57,7 @@ public class ICSWebCrawler extends WebCrawler {
         else
             return !FILTERS.matcher(href).matches() && href.contains(".ics.uci.edu");
     }
-    
+
 
     /**
      * This function is called when a page is fetched and ready
@@ -98,22 +102,14 @@ public class ICSWebCrawler extends WebCrawler {
             String text = htmlParseData.getText();
 //            String html = htmlParseData.getHtml();
 //            List<WebURL> links = htmlParseData.getOutgoingUrls();
-<<<<<<< Updated upstream
             synchronized (CrawlerController.longestPage) {
                 //Obtain longest text length
                 if (text.length() > CrawlerController.longestPage.snd)
                     CrawlerController.longestPage = new Pair<String, Integer>(url, text.length());
             }
             synchronized (CrawlerController.wordList) {
-                CrawlerController.wordList = Utils.computeWordFrequency(Utilities.tokenizeString(text), CrawlerController.wordList);
+                CrawlerController.wordList = Utils.computeWordFrequency(Utils.tokenizeString(text), CrawlerController.wordList);
             }
-=======
-
-            //Obtain longest text length
-            if (text.length() > CrawlerController.longestPage.snd)
-                CrawlerController.longestPage = new Pair<String, Integer>(url, text.length());
-            CrawlerController.wordList = Utils.computeWordFrequency(Utils.tokenizeString(text), CrawlerController.wordList);
->>>>>>> Stashed changes
 
             //Obtain 500 most common words
 //            CrawlerController.wordList.addAll(WordFrequencyCounter.computeWordFrequencies(Utilities.tokenizeString(text)));
