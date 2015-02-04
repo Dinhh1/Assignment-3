@@ -1,9 +1,18 @@
-package ir.assignments.three;
+/**
+ * Dinh Ho 73374042,
+ * David Chung 87654321
+ * Anthony So 83689220
+ *
+ * Assignment 3
+ * INF 141/CS 121
+ */
 
+package ir.assignments.three;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 public class Crawler {
+
 	/**
 	 * This method is for testing purposes only. It does not need to be used
 	 * to answer any of the questions in the assignment. However, it must
@@ -18,7 +27,7 @@ public class Crawler {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return CrawlerController.urls;
+		return CrawlerController.getURLS();
 	}
 
 	public static void main(String[] args)
@@ -32,10 +41,9 @@ public class Crawler {
 		System.out.println("Run time in minutes : " + TimeUnit.MILLISECONDS.toMinutes(runTime) + " minutes");
 		System.out.println("Run time in hours : " + TimeUnit.MILLISECONDS.toHours(runTime) + " hours");
 		System.out.println("Number of unique pages: " + urls.size());
-		System.out.println("Longest page: " + CrawlerController.longestPage.toString());
-				// now lets write the subdomain to text
-		Utils.writeSubdomain(CrawlerController.domainMap);
-		Utils.writeCommonWords(CrawlerController.wordList);
+		System.out.println("Longest page: " + CrawlerController.getLongestPage().toString());
+		Utils.writeSubDomain(CrawlerController.getDomainMap());
+		Utils.writeCommonWords(CrawlerController.getWordList());
 		Utils.writeCollectionList(urls);
 	}
 

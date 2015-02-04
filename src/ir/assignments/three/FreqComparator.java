@@ -1,10 +1,15 @@
+/**
+ * Dinh Ho 73374042,
+ * David Chung 87654321
+ * Anthony So 83689220
+ *
+ * Assignment 3
+ * INF 141/CS 121
+ */
+
 package ir.assignments.three;
 
 import java.util.Comparator;
-
-/**
- * Created by David Chung on 1/15/15.
- */
 
 /**
  * FreqComparator Class
