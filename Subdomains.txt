@@ -1,3 +1,12 @@
+/**
+ * Dinh Ho 73374042,
+ * David Chung 87654321
+ * Anthony So 83689220
+ *
+ * Assignment 3
+ * INF 141/CS 121
+ */
+
 http://alderis.ics.uci.edu, 15
 http://alumni.ics.uci.edu, 5
 http://ambassadors.ics.uci.edu, 1

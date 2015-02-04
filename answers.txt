@@ -1,1 +1,15 @@
-Put your answers to the questions here, on in a similarly named .doc or .pdf file.
+/**
+ * Dinh Ho 73374042,
+ * David Chung 87654321
+ * Anthony So 83689220
+ *
+ * Assignment 3
+ * INF 141/CS 121
+ */
+
+1. It took approximately 7.5 hours to crawl ics.uci.edu
+2. We found 82,479 unique pages.
+3. See Subdomain.txt
+4. The longest page we found in terms of number of words has:
+    459718 words and belongs to http://kdd.ics.uci.edu/databases/movies/data/actors.html
+5. See CommonWords.txt

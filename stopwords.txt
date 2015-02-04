@@ -1,3 +1,12 @@
+/**
+ * Dinh Ho 73374042,
+ * David Chung 87654321
+ * Anthony So 83689220
+ *
+ * Assignment 3
+ * INF 141/CS 121
+ */
+
 ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your', 'yours',
 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her', 'hers',
 'herself', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves',
