@@ -50,12 +50,7 @@ public class ICSWebCrawler extends WebCrawler {
 
         // the ? indiciates query string from a page that can create an infinite number of websites, we will ignore any ?
         // this also means we are ignoring any dynamically generated pages
-        if (href.contains("?") && href.contains("archive")) {
-//            System.out.println("ALERT!!!!!! TRAPPED ENCOUNTERED");
-//            System.out.println("We encountered a site with ?: " + href);
-//            System.out.println("Will not add");
-            return false;
-        } else if (href.contains("?") && href.contains("calendar"))
+        if (href.contains("?"))
             return false;
         else
             return !FILTERS.matcher(href).matches() && href.contains(".ics.uci.edu");
